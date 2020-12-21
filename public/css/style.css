@@ -1,0 +1,27 @@
+body  {
+    background-image: url("/images/background1.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  .name{
+    font-family: 'Sansita Swashed', cursive;
+  }
+
+  .profile-image img{
+      max-width: 50%;
+      margin-left: 25%;
+  }
+
+  .about img{
+    max-width: 30%;
+    max-height: 15em;
+  }
+
+  .social-media li{
+    display: inline-block;
+  }
+
+  

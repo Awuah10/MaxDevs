@@ -1,0 +1,11 @@
+<%- include('partials/header') %>
+<div class="container center">
+<div class="row">
+<% if( notificationMessage.failure === " "){ %> 
+<h5 class="name name card-panel transparent green-text col s12 m8 l8 offset-m2 offset-l3"><%= notificationMessage.success %> </h5>
+<% }else{ %> 
+    <h5 class="name card-panel transparent red-text col s12 m8 l8 offset-m2 offset-l3"><%= notificationMessage.failure %> </h5>
+<% } %> 
+</div>
+</div>
+<%- include('partials/footer') %>
