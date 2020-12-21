@@ -50,12 +50,17 @@ app.get("/details", function(req, res) {
   res.render("details");
 })
 
+
+
+
+//handles post request from contact page
 app.post("/contact", function(req, res) {
     
         const name = req.body.name;
         const email = req.body.email;
         const phone = req.body.phone;
         const message = req.body.message;
+        const userReference = name.substring(0,4) + Math.floor((Math.random() * 1000) + 1);
 
         //send one mail to myself
         const mailOptions = {
@@ -81,8 +86,8 @@ app.post("/contact", function(req, res) {
             from: 'MaxDevs <mhenneh20@gmail.com>',
             to: email, 
             subject: 'Thank you for contacting MaxDevs',
-            text: "Dear " + name + ",\nThank you for rquesting the services of MaxDevs! \n" + 
-            "Please follow the link below and provide specific details for your project request.\n \n http://localhost:3000/details \n \n Best Regards\n The MaxDevs Team."
+            text: "Dear " + name + ",\nThank you for rquesting the services of MaxDevs! \n" + "Your Reference Number: " + userReference + 
+            "\nPlease follow the link below and provide specific details for your project request.\n \n http://localhost:3000/details \n \n Best Regards\n The MaxDevs Team."
           };
 
           
@@ -93,6 +98,40 @@ app.post("/contact", function(req, res) {
               console.log('Email sent: ' + info.response); 
             }
           });
+
+})
+
+//handles post request from details page
+app.post("/details", function(req, res) {
+  
+  const referenceNumber = req.body.reference_number;
+  const projectOptions = req.body.projectOptions;
+  const projectLink = req.body.old_project_link;
+  const projectName = req.body.project_name;
+  const projectDescription = req.body.project_description;
+  const submissionDate = req.body.submission_date;
+
+
+  //send one mail to myself
+  const mailOptions = {
+    from: 'MaxDevs <mhenneh20@gmail.com>',
+    to: 'awua10@gmail.com', 
+    subject: referenceNumber + ' has sent Project Details',
+    text: " Project Option: " +  projectOptions + "\n" + "Old Project link: " + projectLink +"\n" + " Project Name: "+  projectName + "\n" +
+     "Project Description: " + projectDescription + "\n" + "Submission Date: " + submissionDate
+  };
+  
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+      notificationMessage.failure = "Ooops!! Something went wrong. Please try again!";
+     res.render("info", {notificationMessage: notificationMessage});
+    } else {
+      notificationMessage.success = "Thank you for sending further details about the project. We will get back to you as soon as possible";
+      res.render("info", {notificationMessage: notificationMessage});
+    }
+  });
+
 
 })
 

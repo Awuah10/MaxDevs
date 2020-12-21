@@ -1,5 +1,53 @@
 <%- include('partials/header') %>
 <div class="container center">
 
+
+<div class="row">
+    <form class="col s12 m8 l8 offset-m2 offset-l3"  method="POST" action="/details" id="detailsForm">
+      <div class="row">
+
+        <div class="input-field col s12 m12 l11 ">
+            <input id="icon_prefix" type="text" class="validate" name="reference_number" required>
+            <label for="reference_number">Your Reference Number</label>
+          </div>
+
+        <div class="input-field col s12 m12 l11">
+            <select class="select" name="projectOptions" required>
+              <option value="" disabled selected>Please select one option</option>
+              <option value="From Scratch">From Scratch</option>
+              <option value="Redesign">Redesign</option>
+            </select>
+            <label>Is it a new or already existing project?</label>
+          </div>
+
+          <div class="input-field col s12 m12 l11 ">
+            <input id="icon_prefix" type="text" class="validate" name="old_project_link" >
+            <label for="old-project-link">Please provide the link to the project if you want a Re-design</label>
+          </div>
+
+          <div class="input-field col s12 m12 l11 ">
+            <input id="icon_prefix" type="text" class="validate" name="project_name" required>
+            <label for="project-name">Please provide a name you want to give to the application</label>
+          </div>
+    
+        <div class="input-field col s12 m12 l11">
+            <textarea id="textarea" class="materialize-textarea" name="project_description" required></textarea>
+            <label for="textarea">Please provide an Overview, Some background Information and Goals for this project</label>
+          </div>
+      
+
+      <div class="input-field col s12 m12 l11 ">
+        <input id="icon_prefix" type="text" class="validate" name="submission_date" required>
+        <label for="submission-date">Approximate date you want the project to be ready</label>
+      </div>
+      
+    </div>
+      <button class="btn blue-grey darken-4 waves-effect waves-light col s12 m12 l11" type="submit">Send Project Details
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+    
+  </div>
+
 </div>
 <%- include('partials/footer') %>
